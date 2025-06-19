@@ -4,8 +4,8 @@ tasks:
   codegen:
     dir: '{{.USER_WORKING_DIR}}/proto'
     cmds:
-      - mkdir ../{{.CLI_ARGS}}/generated -p
-      - protoc --go_out=../{{.CLI_ARGS}} --go_opt=paths=source_relative --go-grpc_out=../{{.CLI_ARGS}}/generated --go-grpc_opt=paths=source_relative {{.CLI_ARGS}}.proto
+      - mkdir -p ../{{.CLI_ARGS}}/generated
+      - protoc --go_out=../{{.CLI_ARGS}}/generated --go_opt=paths=source_relative --go-grpc_out=../{{.CLI_ARGS}}/generated --go-grpc_opt=paths=source_relative {{.CLI_ARGS}}.proto
   tidy:
     dir: '{{.USER_WORKING_DIR}}/{{.CLI_ARGS}}'
     cmds:

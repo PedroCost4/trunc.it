@@ -1,0 +1,101 @@
+services:
+  auth:
+    build: ../back/auth
+    ports:
+      - "3001:3000"
+    environment:
+      - DATABASE_URL=postgresql://auth_user:auth_pass@auth_db:5432/auth_db
+      - REDIS_URL=redis://redis:6379
+    depends_on:
+      - auth_db
+      - redis
+
+  auth_db:
+    image: postgres:15
+    environment:
+      POSTGRES_USER: auth_user
+      POSTGRES_PASSWORD: auth_pass
+      POSTGRES_DB: auth_db
+    ports:
+      - "5433:5432"
+    volumes:
+      - auth_db_data:/var/lib/postgresql/data
+
+  shortener:
+    build: ../back/shortener
+    ports:
+      - "3002:3000"
+    environment:
+      - DATABASE_URL=postgresql://shortener_user:shortener_pass@shortener_db:5432/shortener_db
+      - REDIS_URL=redis://redis:6379
+    depends_on:
+      - shortener_db
+      - redis
+
+  shortener_db:
+    image: postgres:15
+    environment:
+      POSTGRES_USER: shortener_user
+      POSTGRES_PASSWORD: shortener_pass
+      POSTGRES_DB: shortener_db
+    ports:
+      - "5434:5432"
+    volumes:
+      - shortener_db_data:/var/lib/postgresql/data
+
+  redirector:
+    build: ../back/redirector
+    ports:
+      - "3003:3000"
+    environment:
+      - DATABASE_URL=postgresql://redirector_user:redirector_pass@redirector_db:5432/redirector_db
+      - REDIS_URL=redis://redis:6379
+    depends_on:
+      - redirector_db
+      - redis
+
+  redirector_db:
+    image: postgres:15
+    environment:
+      POSTGRES_USER: redirector_user
+      POSTGRES_PASSWORD: redirector_pass
+      POSTGRES_DB: redirector_db
+    ports:
+      - "5435:5432"
+    volumes:
+      - redirector_db_data:/var/lib/postgresql/data
+
+  frontend:
+    build: ./frontend
+    ports:
+      - "3000:3000"
+    depends_on:
+      - auth
+      - shortener
+      - redirector
+      - api-gateway
+
+  redis:
+    image: redis:7
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+
+  api-gateway:
+    build: ../back/auth
+    ports:
+      - "3000:3000"
+    environment:
+      - AUTH_URL=http://auth:3000
+      - SHORTENER_URL=http://shortener:3000
+      - REDIRECTOR_URL=http://redirector:3000
+    depends_on:
+      - auth_db
+      - redis
+
+volumes:
+  auth_db_data:
+  shortener_db_data:
+  redirector_db_data:
+  redis_data:

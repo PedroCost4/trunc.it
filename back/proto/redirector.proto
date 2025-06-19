@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+package redirector;
+
+option go_package = "trunc.it/trunc.it/redirector";
+
+service RedirectorService {
+  rpc GetUrl(GetUrlRequest) returns (GetUrlResponse) {}
+}
+
+message GetUrlRequest {
+  string short_code = 1;
+}
+
+message GetUrlResponse {
+  bool success = 1;
+  string msg = 2;
+  string data = 3;
+}

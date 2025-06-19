@@ -1,0 +1,7 @@
+version: '3'
+
+tasks:
+  codegen:
+    dir: '{{.USER_WORKING_DIR}}/proto'
+    cmds:
+      - protoc --go_out=../{{.CLI_ARGS}} --go_opt=paths=source_relative --go-grpc_out=../{{.CLI_ARGS}} --go-grpc_opt=paths=source_relative {{.CLI_ARGS}}.proto

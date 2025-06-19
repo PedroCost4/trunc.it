@@ -3,7 +3,7 @@
 
 ```mermaid
 graph TD
-    A["Client (HTTP/JSON)"] --> B["API Gateway (HTTP server)"]
+    A["Client"] -->|HTTP| B["API Gateway"]
     B -->|gRPC| C["Auth Service (Go + gRPC)"]
     B -->|gRPC| D["Shortener Service (Go + gRPC)"]
     B -->|gRPC| E["Redirector Service (Go + gRPC)"]

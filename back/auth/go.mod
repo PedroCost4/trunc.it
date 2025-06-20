@@ -1,4 +1,4 @@
-module PedroCost4/trunc.it/auth
+module Trunc-it/trunc.it/auth
 
 go 1.24.1
 

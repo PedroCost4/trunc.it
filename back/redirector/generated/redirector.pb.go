@@ -139,7 +139,7 @@ const file_redirector_proto_rawDesc = "" +
 	"\x03msg\x18\x02 \x01(\tR\x03msg\x12\x12\n" +
 	"\x04data\x18\x03 \x01(\tR\x04data2V\n" +
 	"\x11RedirectorService\x12A\n" +
-	"\x06GetUrl\x12\x19.redirector.GetUrlRequest\x1a\x1a.redirector.GetUrlResponse\"\x00B\x1eZ\x1ctrunc.it/trunc.it/redirectorb\x06proto3"
+	"\x06GetUrl\x12\x19.redirector.GetUrlRequest\x1a\x1a.redirector.GetUrlResponse\"\x00B\x1eZ\x1ctrunc-it/trunc.it/redirectorb\x06proto3"
 
 var (
 	file_redirector_proto_rawDescOnce sync.Once

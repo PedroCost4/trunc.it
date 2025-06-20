@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package redirector;
 
-option go_package = "trunc.it/trunc.it/redirector";
+option go_package = "trunc-it/trunc.it/redirector";
 
 service RedirectorService {
   rpc GetUrl(GetUrlRequest) returns (GetUrlResponse) {}

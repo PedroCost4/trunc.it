@@ -1,4 +1,4 @@
-module trunc.it/trunc.it/redirector
+module trunc-it/trunc.it/redirector
 
 go 1.24.1
 

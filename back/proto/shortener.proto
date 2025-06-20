@@ -1,3 +1,19 @@
 syntax = "proto3";
 
 package shortener;
+
+option go_package = "trunc.it/trunc.it/shortener";
+
+service ShortenerService {
+  rpc Shorten(ShortenRequest) returns (ShortenResponse) {}
+}
+
+message ShortenRequest {
+  string url = 1;
+}
+
+message ShortenResponse {
+  bool success = 1;
+  string msg = 2;
+  string data = 3;
+}

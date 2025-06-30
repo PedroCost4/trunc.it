@@ -26,13 +26,14 @@ func (c *cache) Store(key any, document any, ttl time.Duration) (string, error) 
 
 	hashKey := h.Sum(nil)
 
-	err := r.Set(context.Background(), string(hashKey), document, ttl).Err()
+	encodedHashKey := hex.EncodeToString(hashKey)
+	err := r.Set(context.Background(), encodedHashKey, document, ttl).Err()
 
 	if err != nil {
 		return "", fmt.Errorf("Failed to store document: %v", err)
 	}
 
-	return string(hashKey), nil
+	return encodedHashKey, nil
 }
 
 func (c *cache) Lookup(key any) (*string, error) {

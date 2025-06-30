@@ -3,7 +3,9 @@ package helpers
 import (
 	"context"
 	"crypto/sha256"
+	"encoding/hex"
 	"fmt"
+	"log"
 	"time"
 	"trunc-it/trunc.it/redirector/config"
 

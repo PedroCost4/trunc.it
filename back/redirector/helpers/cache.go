@@ -48,7 +48,7 @@ func (c *cache) Lookup(key any) (*string, error) {
 
 	data, err := r.Get(context.Background(), string(hashKey)).Result()
 
-	fmt.Printf("%s", err)
+	log.Printf("Error during cache lookup: %v", err)
 
 	if err == redis.Nil {
 		return nil, nil

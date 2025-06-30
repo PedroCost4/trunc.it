@@ -18,7 +18,7 @@ func GetUrl(ctx context.Context, req *pb.GetUrlRequest) (*pb.GetUrlResponse, err
 		err := proto.Unmarshal([]byte(*cacheResponse), &response)
 
 		if err != nil {
-			return nil, fmt.Errorf("Failed to marshal cached response: %v", err)
+			return nil, fmt.Errorf("Failed to unmarshal cached response: %v", err)
 		}
 
 		return &response, nil

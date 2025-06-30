@@ -22,9 +22,9 @@ func TestGetUrlCached(t *testing.T) {
 
 	request := pb.GetUrlRequest{ShortCode: "abcdef"}
 
-	stringfied, _ := proto.Marshal(&pb.GetUrlResponse{Success: true, Msg: "", Data: "12345678"})
+	stringified, _ := proto.Marshal(&pb.GetUrlResponse{Success: true, Msg: "", Data: "12345678"})
 
-	helpers.Cache.Store(request.ShortCode, stringfied, time.Millisecond*10000)
+	helpers.Cache.Store(request.ShortCode, stringified, time.Millisecond*10000)
 
 	client := pb.NewRedirectorServiceClient(conn)
 
